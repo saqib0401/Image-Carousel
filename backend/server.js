@@ -1,6 +1,43 @@
-const express = require("express");
+import express from "express";
+import { createApi } from "unsplash-js";
+import fetch from "node-fetch";
 
 const app = express();
-app.get("/", (req, res) => res.send("Api is running"));
+import dotenv from "dotenv";
+dotenv.config();
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+global.fetch = fetch;
+const PORT = process.env.PORT || 5000;
+const unsplash = createApi({
+  accessKey: process.env.API_KEY,
+});
+
+app.get("/", (req, res) => {
+  res.send("Api is running");
+});
+
+// app.get("/api/:categories", (req, res) => {
+//   res.send("You have requested the category of " + req.params.categories);
+// });
+
+app.get("/api/:categories", (req, res) => {
+  let photos = [];
+  unsplash.search
+    .getPhotos({ query: `${req.params.categories}`, page: 1, perPage: 10 })
+    .then((result) => {
+      if (result.errors) {
+        // handle error here
+        console.log("error occurred: ", result.errors[0]);
+      } else {
+        // handle success here
+        for (let i = 0; i < 10; i++) {
+          photos.push(result.response.results[i].urls.regular);
+        }
+
+        // console.log(photos);
+      }
+      res.json(photos);
+    });
+});
+
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
