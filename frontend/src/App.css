@@ -4,3 +4,8 @@
   height: 95vh;
   border: 1px solid black;
 }
+.container {
+  width: 20vw;
+  height: 89vh;
+  border-right: 1px solid black;
+}
