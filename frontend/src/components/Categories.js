@@ -1,26 +1,31 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
-import imageData from "../imagesData";
 import "./Categories.css";
 
-const Categories = () => {
-  useEffect(() => {
+const Categories = ({ imageData, setImageData }) => {
+  function handleClick(category) {
+    let state = imageData;
+    let index = state.findIndex((x) => x.category === category);
     axios
-      .get("http://localhost:5000/api/cars")
-      .then((response) => console.log(response.data));
-  }, []);
+      .get(`http://localhost:5000/api/${category}`)
+      .then((response) => state[index].images.push(...response.data));
+    setImageData(state);
+    console.log(imageData);
+  }
+
   return (
     <div>
       <h3 className="heading">Categories</h3>
       <ul className="btn-group">
         {imageData.map((item) => (
           <li key={item.category}>
-            <button>{item.category}</button>
+            <button onClick={() => handleClick(item.category)}>
+              {item.category}
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
 export default Categories;
