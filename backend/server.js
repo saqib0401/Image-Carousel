@@ -2,6 +2,7 @@ import express from "express";
 import { createApi } from "unsplash-js";
 import fetch from "node-fetch";
 import cors from "cors";
+import data from "./data.js";
 
 const app = express();
 app.use(cors());
@@ -24,22 +25,25 @@ app.get("/", (req, res) => {
 // });
 
 app.get("/api/:categories", (req, res) => {
-  let photos = [];
   unsplash.search
-    .getPhotos({ query: `${req.params.categories}`, page: 1, perPage: 10 })
+    .getPhotos({
+      query: `${req.params.categories}`,
+      page: 1,
+      perPage: data.numOfImg,
+    })
     .then((result) => {
       if (result.errors) {
         // handle error here
         console.log("error occurred: ", result.errors[0]);
       } else {
         // handle success here
-        for (let i = 0; i < 10; i++) {
-          photos.push(result.response.results[i].urls.regular);
+        for (let i = 0; i < data.numOfImg; i++) {
+          data.images.push(result.response.results[i].urls.regular);
         }
 
-        // console.log(photos);
+        // console.log(data.images);
       }
-      res.json(photos);
+      res.json(data.images);
     });
 });
 

@@ -1,0 +1,35 @@
+.heading {
+  margin: 0;
+  padding-left: 1vw;
+  padding-bottom: 0;
+}
+.btn-group {
+  padding-left: 1vw;
+  padding-top: 0;
+  margin: 0;
+  margin-top: 3px;
+}
+.btn-group button {
+  background-color: white; /* Green background */
+  border: 1px solid black; /* Green border */
+  color: black; /* White text */
+  padding: 8px 10px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 90%;
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: gray;
+  color: white;
+}
+
+li {
+  list-style: none;
+  padding: 0;
+}

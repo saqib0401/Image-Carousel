@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import imageData from "../imagesData";
+import "./Categories.css";
 
 const Categories = () => {
   useEffect(() => {
@@ -9,7 +11,14 @@ const Categories = () => {
   }, []);
   return (
     <div>
-      <h3 style={{ margin: 0, paddingLeft: "1vw" }}>Categories</h3>
+      <h3 className="heading">Categories</h3>
+      <ul className="btn-group">
+        {imageData.map((item) => (
+          <li key={item.category}>
+            <button>{item.category}</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
