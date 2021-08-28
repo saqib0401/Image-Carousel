@@ -1,0 +1,12 @@
+.file_heading {
+  margin: 0;
+  margin-top: 5vh;
+  padding-left: 1vw;
+}
+.file_names {
+  height: 25vh;
+  margin-left: 1vw;
+  width: 17vw;
+  border: 1px solid black;
+  overflow-y: scroll;
+}
