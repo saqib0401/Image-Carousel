@@ -17,12 +17,20 @@ function App() {
     { category: "Flowers", images: [] },
     { category: "Laptops", images: [] },
   ]);
+  const [click, setClick] = useState("");
+  const [checkClick, setCheckClick] = useState(false);
   return (
     <div className="App">
       <Header />
       <div className="container">
-        <Categories imageData={categoryData} setImageData={setCategoryData} />
-        <Files />
+        <Categories
+          imageData={categoryData}
+          setImageData={setCategoryData}
+          setClick={setClick}
+          setCheckClick={setCheckClick}
+        />
+        <Files click={click} imageData={categoryData} checkClick={checkClick} />
+        {console.log(click)}
       </div>
     </div>
   );

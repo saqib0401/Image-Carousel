@@ -6,7 +6,11 @@
 .file_names {
   height: 25vh;
   margin-left: 1vw;
-  width: 17vw;
+  width: 12.5vw;
   border: 1px solid black;
   overflow-y: scroll;
+}
+ul {
+  padding: 0;
+  padding-left: 10px;
 }

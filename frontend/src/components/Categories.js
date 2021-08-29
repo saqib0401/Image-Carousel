@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./Categories.css";
 
-const Categories = ({ imageData, setImageData }) => {
+const Categories = ({ imageData, setImageData, setClick, setCheckClick }) => {
   function handleClick(category) {
     let state = imageData;
     let index = state.findIndex((x) => x.category === category);
@@ -11,6 +11,8 @@ const Categories = ({ imageData, setImageData }) => {
       .then((response) => state[index].images.push(...response.data));
     setImageData(state);
     console.log(imageData);
+    setClick(category);
+    setCheckClick(true);
   }
 
   return (

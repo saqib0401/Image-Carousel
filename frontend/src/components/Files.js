@@ -1,19 +1,31 @@
 import React from "react";
 import "./Files.css";
-const Files = () => {
+const Files = ({ click, imageData, checkClick }) => {
+  let index = imageData.findIndex((x) => x.category === click);
+  if (index === -1) {
+    index = 0;
+  }
+  const runCallback = (cb) => {
+    return cb();
+  };
+  function notClick() {
+    if (!checkClick) {
+      return <li>Click on the Categories to fetch Files</li>;
+    } else {
+      return runCallback(() => {
+        const row = [];
+        for (var i = 1; i <= 10; i++) {
+          row.push(<li key={i}>{`${click}-${i}.png`}</li>);
+        }
+        return row;
+      });
+    }
+  }
   return (
     <div>
       <h3 className="file_heading">Files</h3>
       <div className="file_names">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
+        <ul>{notClick()}</ul>
       </div>
     </div>
   );
