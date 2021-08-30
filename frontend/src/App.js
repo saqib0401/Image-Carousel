@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Files from "./components/Files";
+import CarouselContainer from "./components/CarouselContainer";
 
 function App() {
   const [categoryData, setCategoryData] = useState([
@@ -31,6 +32,9 @@ function App() {
         />
         <Files click={click} imageData={categoryData} checkClick={checkClick} />
         {console.log(click)}
+      </div>
+      <div className="carouselContainer">
+        <CarouselContainer />
       </div>
     </div>
   );
