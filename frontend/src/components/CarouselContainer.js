@@ -5,16 +5,36 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-const CarouselContainer = () => {
+const CarouselContainer = ({ carouselData, checkClick }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [slider1, setSlider1] = useState(null);
   const [slider2, setSlider2] = useState(null);
+  let slidesData;
 
   useEffect(() => {
     setNav1(slider1);
     setNav2(slider2);
   }, [slider1, slider2]);
+
+  function notClick() {
+    if (checkClick) {
+      slidesData = carouselData;
+      console.log("some button is clicked");
+    } else {
+      slidesData = [
+        "https://picsum.photos/800/400?img=1",
+        "https://picsum.photos/800/400?img=2",
+        "https://picsum.photos/800/400?img=3",
+        "https://picsum.photos/800/400?img=4",
+      ];
+      console.log("nothing got clicked");
+    }
+  }
+
+  useEffect(() => {
+    notClick();
+  });
 
   const settingsMain = {
     slidesToShow: 1,
@@ -39,42 +59,18 @@ const CarouselContainer = () => {
     infinite: true,
   };
 
-  const slidesData = [
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    },
-    {
-      id: 3,
-    },
-    {
-      id: 4,
-    },
-    {
-      id: 5,
-    },
-    {
-      id: 6,
-    },
-  ];
-
   return (
     <div className="slider-wrapper">
       <div className="slider-wrapper-main">
+        {notClick()}
         <Slider
           {...settingsMain}
           asNavFor={nav2}
           ref={(slider) => setSlider1(slider)}
         >
-          {slidesData.map((slide) => (
-            <div className="slick-slide" key={slide.id}>
-              <img
-                className="slick-slide-image"
-                alt="img"
-                src={`https://picsum.photos/800/400?img=${slide.id}`}
-              />
+          {slidesData.map((slide, idx) => (
+            <div className="slick-slide" key={idx}>
+              <img className="slick-slide-image" alt="img" src={slide} />
             </div>
           ))}
         </Slider>
@@ -85,13 +81,10 @@ const CarouselContainer = () => {
           asNavFor={nav1}
           ref={(slider) => setSlider2(slider)}
         >
-          {slidesData.map((slide) => (
-            <div className="slick-slide" key={slide.id}>
-              <img
-                className="slick-slide-image"
-                alt="img"
-                src={`https://picsum.photos/800/400?img=${slide.id}`}
-              />
+          {slidesData.map((slide, idx) => (
+            <div className="slick-slide" key={idx}>
+              <img className="slick-slide-image" alt="img" src={slide} />
+              {console.log("slide ", slide)}
             </div>
           ))}
         </Slider>

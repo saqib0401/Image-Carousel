@@ -39,7 +39,7 @@ app.get("/api/:categories", (req, res) => {
       } else {
         // handle success here
         for (let i = 0; i < numOfImg; i++) {
-          photos.push(result.response.results[i].urls.regular);
+          photos.push(result.response.results[i].urls.raw + "&w=400");
         }
 
         // console.log(photos);

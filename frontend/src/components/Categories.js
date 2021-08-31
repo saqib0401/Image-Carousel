@@ -2,14 +2,22 @@ import React from "react";
 import axios from "axios";
 import "./Categories.css";
 
-const Categories = ({ imageData, setImageData, setClick, setCheckClick }) => {
+const Categories = ({
+  imageData,
+  setImageData,
+  setClick,
+  setCheckClick,
+  setCarouselData,
+}) => {
   function handleClick(category) {
     let state = imageData;
     let index = state.findIndex((x) => x.category === category);
+    let slideData = imageData[index].images;
     axios
       .get(`http://localhost:5000/api/${category}`)
       .then((response) => state[index].images.push(...response.data));
     setImageData(state);
+    setCarouselData(slideData);
     console.log(imageData);
     setClick(category);
     setCheckClick(true);

@@ -20,6 +20,8 @@ function App() {
   ]);
   const [click, setClick] = useState("");
   const [checkClick, setCheckClick] = useState(false);
+  const [carouselData, setCarouselData] = useState([]);
+
   return (
     <div className="App">
       <Header />
@@ -29,12 +31,17 @@ function App() {
           setImageData={setCategoryData}
           setClick={setClick}
           setCheckClick={setCheckClick}
+          setCarouselData={setCarouselData}
         />
         <Files click={click} imageData={categoryData} checkClick={checkClick} />
         {console.log(click)}
       </div>
       <div className="carouselContainer">
-        <CarouselContainer />
+        <CarouselContainer
+          carouselData={carouselData}
+          checkClick={checkClick}
+        />
+        {console.log("app.js ", carouselData)}
       </div>
     </div>
   );
