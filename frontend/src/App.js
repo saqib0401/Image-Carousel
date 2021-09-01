@@ -34,14 +34,12 @@ function App() {
           setCarouselData={setCarouselData}
         />
         <Files click={click} imageData={categoryData} checkClick={checkClick} />
-        {console.log(click)}
       </div>
       <div className="carouselContainer">
         <CarouselContainer
           carouselData={carouselData}
           checkClick={checkClick}
         />
-        {console.log("app.js ", carouselData)}
       </div>
     </div>
   );

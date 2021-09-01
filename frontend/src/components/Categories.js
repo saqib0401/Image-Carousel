@@ -9,11 +9,11 @@ const Categories = ({
   setCheckClick,
   setCarouselData,
 }) => {
-  function handleClick(category) {
+  async function handleClick(category) {
     let state = imageData;
     let index = state.findIndex((x) => x.category === category);
     let slideData = imageData[index].images;
-    axios
+    await axios
       .get(`http://localhost:5000/api/${category}`)
       .then((response) => state[index].images.push(...response.data));
     setImageData(state);
