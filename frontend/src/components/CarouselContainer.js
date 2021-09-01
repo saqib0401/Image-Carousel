@@ -6,7 +6,7 @@ import Imgix from "react-imgix";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-const CarouselContainer = ({ carouselData, checkClick }) => {
+const CarouselContainer = ({ carouselData, checkClick, click }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [slider1, setSlider1] = useState(null);
@@ -27,6 +27,10 @@ const CarouselContainer = ({ carouselData, checkClick }) => {
         "https://picsum.photos/800/400?img=2",
         "https://picsum.photos/800/400?img=3",
         "https://picsum.photos/800/400?img=4",
+        "https://picsum.photos/800/400?img=5",
+        "https://picsum.photos/800/400?img=6",
+        "https://picsum.photos/800/400?img=7",
+        "https://picsum.photos/800/400?img=8",
       ];
     }
   }
@@ -100,9 +104,12 @@ const CarouselContainer = ({ carouselData, checkClick }) => {
                   fit: "crop",
                   fm: "jpg",
                 }}
-                width={400}
-                height={140}
+                width={200}
+                height={120}
               />
+              <figcaption>
+                {click === "" ? `Img-${idx + 1}` : `${click}-${idx + 1}.png`}
+              </figcaption>
             </div>
           ))}
         </Slider>

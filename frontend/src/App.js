@@ -39,6 +39,7 @@ function App() {
         <CarouselContainer
           carouselData={carouselData}
           checkClick={checkClick}
+          click={click}
         />
       </div>
     </div>

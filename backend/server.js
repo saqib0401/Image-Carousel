@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 app.get("/api/:categories", (req, res) => {
   let photos = [];
-  let numOfImg = 4;
+  let numOfImg = 10;
   unsplash.search
     .getPhotos({
       query: `${req.params.categories}`,
